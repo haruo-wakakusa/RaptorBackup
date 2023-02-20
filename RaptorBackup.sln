@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33403.182
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Compress", "Compress\Compress.csproj", "{9805C774-92AA-4D82-9D59-A6E39EE09361}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Compress_FS", "Compress_FS\Compress_FS.fsproj", "{DEC14673-43D0-49E3-81E7-CAB307B1D28D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9805C774-92AA-4D82-9D59-A6E39EE09361}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9805C774-92AA-4D82-9D59-A6E39EE09361}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9805C774-92AA-4D82-9D59-A6E39EE09361}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9805C774-92AA-4D82-9D59-A6E39EE09361}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DEC14673-43D0-49E3-81E7-CAB307B1D28D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DEC14673-43D0-49E3-81E7-CAB307B1D28D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DEC14673-43D0-49E3-81E7-CAB307B1D28D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DEC14673-43D0-49E3-81E7-CAB307B1D28D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A1E3FD8E-6100-478E-BB68-5B39355AC1B8}
+	EndGlobalSection
+EndGlobal
