@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
@@ -13,12 +14,13 @@ namespace Compress
     {
         static void Main(string[] args)
         {
-            Byte[] bytes = { 0, 1, 2, 1, 0 };
-            HuffmanTable table = new HuffmanTable(bytes);
-            HuffmanTree tree = HuffmanTree.Create(table);
+            var t = new HuffmanTable(4);
+            Debug.Assert(t.Size == 4);
+            Debug.Assert(t.GetCount(0) == 0);
         }
     }
 
+    /*
     internal class HuffmanTree
     {
         public UInt32 count = 0;
@@ -74,23 +76,5 @@ namespace Compress
             return "[" + this.d.ToString() + ", " + this.count.ToString() + "]";
         }
     }
-
-    internal class HuffmanTable
-    {
-        public const int Size = 256;
-        public readonly UInt32 [] d;
-        public HuffmanTable(Byte[] bytes)
-        {
-            d = new UInt32[Size];
-            for (int i = Size - 1; i >= 0; i--)
-            {
-                d[i] = 0;
-            }
-
-            foreach (Byte b in bytes)
-            {
-                d[b]++;
-            }
-        }
-    }
+    */
 }
