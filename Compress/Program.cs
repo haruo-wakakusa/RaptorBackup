@@ -7,6 +7,7 @@ using System.Linq.Expressions;
 using System.Runtime.Remoting.Messaging;
 using System.Text;
 using System.Threading.Tasks;
+using Compress.HuffmanTree;
 
 namespace Compress
 {
@@ -14,9 +15,9 @@ namespace Compress
     {
         static void Main(string[] args)
         {
-            var t = new HuffmanTable(4);
-            Debug.Assert(t.Size == 4);
-            Debug.Assert(t.GetCount(0) == 0);
+            Console.WriteLine(new HuffmanLeaf(1, 5));
+            Console.WriteLine(new HuffmanBranch(new HuffmanLeaf(2, 1), new HuffmanLeaf(3, 4)));
+            Console.WriteLine();
         }
     }
 
