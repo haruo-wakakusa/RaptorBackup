@@ -48,5 +48,7 @@ namespace CompressTests
                 Assert.AreEqual(n3, b.nodes[2]);
             }
         }
+
+        // コメント
     }
 }
