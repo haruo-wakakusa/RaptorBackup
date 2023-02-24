@@ -49,6 +49,14 @@ namespace CompressTests
             }
         }
 
-        // コメント
+
+
+        [TestMethod]
+        public void HuffmanTreeBuilder_Increment_Test1()
+        {
+            var n1 = new HuffmanLeaf(1, 1);
+            var n2 = new HuffmanLeaf(2, 2);
+            var n3 = new HuffmanLeaf(3, 3);
+        }
     }
 }
