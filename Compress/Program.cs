@@ -15,8 +15,9 @@ namespace Compress
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(new HuffmanLeaf(1, 5));
-            Console.WriteLine(new HuffmanBranch(new HuffmanLeaf(2, 1), new HuffmanLeaf(3, 4)));
+            Console.WriteLine((new HuffmanLeaf(7, 8)).GetHashCode());
+            var b = new HuffmanBranch(new HuffmanLeaf(1, 2), new HuffmanLeaf(8, 15));
+            Console.WriteLine(b.GetHashCode());
             Console.WriteLine();
         }
     }

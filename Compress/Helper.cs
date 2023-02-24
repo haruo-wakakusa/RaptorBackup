@@ -8,30 +8,11 @@ namespace Cdr
 {
     public class Helper
     {
-        public delegate bool StrictEqualityFunction<T>(T a, T b);
-        public delegate bool ExtendedEqualityFunction<T>(Object a, Object b);
-        
-        public ExtendedEqualityFunction<T> EqlFn<T>(StrictEqualityFunction<T> fn)
+        public static bool IsNotTheSameType(Object a, Object b)
         {
-            return (a, b) =>
-            {
-                if (a == null)
-                {
-                    return b == null;
-                }
-                else if (!(a is T))
-                {
-                    throw new NotImplementedException();
-                }
-                else if (!(b is T))
-                {
-                    return false;
-                }
-                else
-                {
-                    return fn((T)a, (T)b);
-                }
-            };
+            if (b == null) return true;
+            if (a.GetType() != b.GetType()) return true;
+            return false;
         }
     }
 }

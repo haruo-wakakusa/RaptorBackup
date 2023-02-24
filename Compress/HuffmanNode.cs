@@ -19,7 +19,18 @@ namespace Compress.HuffmanTree
         public UInt32 Count { get { return count; } }
 
         public override abstract string ToString();
+
+        // Object.Equalsメソッドはテストケースを評価するために使うので
+        // サブクラス毎に厳密に定義しなくてはならない
         public abstract override bool Equals(object obj);
+
+        // Object.GetHashCodeメソッドはサブクラスの中身まで
+        // 確認する必要はなく、このクラスの情報だけで判断してよい
+        // (a == b ならば a.GetHashCode() == b.GetHashCode() が守られていればよい)
+        public override int GetHashCode()
+        {
+            return (int)this.count;
+        }
     }
 
     public class HuffmanBranch : HuffmanNode
@@ -44,7 +55,9 @@ namespace Compress.HuffmanTree
 
         public override bool Equals(object obj)
         {
-            return Helper.EqlFn<HuffmanBranch>((a, b) => { return a.Node0 == b.Node0 && a.Node1 == b.Node1; })(this, obj);
+            if (Helper.IsNotTheSameType(this, obj)) return false;
+            HuffmanBranch b = (HuffmanBranch)obj;
+            return this.Count == b.Count && this.Node0.Equals(b.Node0) && this.Node1.Equals(b.Node1);
         }
     }
 
@@ -65,7 +78,9 @@ namespace Compress.HuffmanTree
 
         public override bool Equals(object obj)
         {
-            return Helper.EqlFn<FuffmanLeaf>((a, b) => { return a.Index})
+            if (Helper.IsNotTheSameType(this, obj)) return false;
+            HuffmanLeaf leaf = (HuffmanLeaf)obj;
+            return this.Count == leaf.Count && this.Index == leaf.Index;
         }
     }
 }

@@ -24,6 +24,26 @@ namespace CompressTests
         }
 
         [TestMethod]
+        public void HuffmanNode_GetHashCode_Test()
+        {
+            Assert.AreEqual(8, (new HuffmanLeaf(7, 8)).GetHashCode());
+            var b = new HuffmanBranch(new HuffmanLeaf(1, 2), new HuffmanLeaf(8, 15));
+            Assert.AreEqual(17, b.GetHashCode());
+        }
+
+        [TestMethod]
+        public void HuffmanNode_Equals_Test()
+        {
+            Assert.AreEqual(new HuffmanLeaf(1, 2), new HuffmanLeaf(1, 2));
+            Assert.AreNotEqual(new HuffmanLeaf(1, 2), new HuffmanLeaf(2, 2));
+            var a = new HuffmanBranch(new HuffmanLeaf(1, 2), new HuffmanLeaf(3, 4));
+            var b = new HuffmanBranch(new HuffmanLeaf(1, 2), new HuffmanLeaf(3, 4));
+            var c = new HuffmanBranch(new HuffmanLeaf(3, 4), new HuffmanLeaf(1, 2));
+            Assert.AreEqual(a, b);
+            Assert.AreNotEqual(a, c);
+        }
+
+        [TestMethod]
         public void HuffmanTreeBuilder_Initialization_Test()
         {
             var n1 = new HuffmanLeaf(31, 1);
