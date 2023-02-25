@@ -10,12 +10,23 @@ namespace Compress.HuffmanTree
     public class HuffmanTreeBuilder
     {
         public readonly HuffmanNode[] nodes;
-        public uint idx = 0;
+        public int idx = 0;
 
-        public HuffmanTreeBuilder(HuffmanNode[] nodes)
+        public HuffmanTreeBuilder(HuffmanLeaf[] nodes1)
         {
-            this.nodes = (HuffmanNode[])nodes.Clone();
-            Array.Sort(this.nodes, (a, b) => { return (int)(a.Count - b.Count); });
+            HuffmanLeaf[] nodes2 = (HuffmanLeaf[])nodes1.Clone();
+            Array.Sort(nodes2, (a, b) => { 
+                int a_b = (int)(a.Count - b.Count);
+                if (a_b != 0)
+                {
+                    return a_b;
+                }
+                else
+                {
+                    return a.Index - b.Index;
+                }
+            });
+            this.nodes = (HuffmanNode[])nodes2; // 配列の共変性を利用
         }
 
         public bool Increment()

@@ -44,39 +44,107 @@ namespace CompressTests
         }
 
         [TestMethod]
-        public void HuffmanTreeBuilder_Initialization_Test()
+        public void HuffmanTreeBuilder_Initalization_Test1()
         {
             var n1 = new HuffmanLeaf(31, 1);
             var n2 = new HuffmanLeaf(22, 2);
             var n3 = new HuffmanLeaf(13, 3);
             {
-                var b = new HuffmanTreeBuilder(new HuffmanNode[] { n1, n2, n3 });
+                var b = new HuffmanTreeBuilder(new HuffmanLeaf[] { n1, n2, n3 });
                 Assert.AreEqual(n1, b.nodes[0]);
                 Assert.AreEqual(n2, b.nodes[1]);
                 Assert.AreEqual(n3, b.nodes[2]);
             }
             {
-                var b = new HuffmanTreeBuilder(new HuffmanNode[] { n3, n2, n1 });
+                var b = new HuffmanTreeBuilder(new HuffmanLeaf[] { n3, n2, n1 });
                 Assert.AreEqual(n1, b.nodes[0]);
                 Assert.AreEqual(n2, b.nodes[1]);
                 Assert.AreEqual(n3, b.nodes[2]);
             }
             {
-                var b = new HuffmanTreeBuilder(new HuffmanNode[] { n2, n3, n1 });
+                var b = new HuffmanTreeBuilder(new HuffmanLeaf[] { n2, n3, n1 });
                 Assert.AreEqual(n1, b.nodes[0]);
                 Assert.AreEqual(n2, b.nodes[1]);
                 Assert.AreEqual(n3, b.nodes[2]);
             }
         }
 
-
+        [TestMethod]
+        public void HuffmanTreeBuilder_Initalization_Test2()
+        {
+            var n1 = new HuffmanLeaf(31, 2);
+            var n2 = new HuffmanLeaf(22, 2);
+            var n3 = new HuffmanLeaf(13, 2);
+            {
+                var b = new HuffmanTreeBuilder(new HuffmanLeaf[] { n1, n2, n3 });
+                Assert.AreEqual(n3, b.nodes[0]);
+                Assert.AreEqual(n2, b.nodes[1]);
+                Assert.AreEqual(n1, b.nodes[2]);
+            }
+            {
+                var b = new HuffmanTreeBuilder(new HuffmanLeaf[] { n3, n2, n1 });
+                Assert.AreEqual(n3, b.nodes[0]);
+                Assert.AreEqual(n2, b.nodes[1]);
+                Assert.AreEqual(n1, b.nodes[2]);
+            }
+            {
+                var b = new HuffmanTreeBuilder(new HuffmanLeaf[] { n2, n3, n1 });
+                Assert.AreEqual(n3, b.nodes[0]);
+                Assert.AreEqual(n2, b.nodes[1]);
+                Assert.AreEqual(n1, b.nodes[2]);
+            }
+        }
 
         [TestMethod]
         public void HuffmanTreeBuilder_Increment_Test1()
         {
-            var n1 = new HuffmanLeaf(1, 1);
-            var n2 = new HuffmanLeaf(2, 2);
-            var n3 = new HuffmanLeaf(3, 3);
+            var n1 = new HuffmanLeaf(31, 1);
+            var n2 = new HuffmanLeaf(22, 2);
+            var n3 = new HuffmanLeaf(13, 3);
+            var b = new HuffmanTreeBuilder(new HuffmanLeaf[] { n1, n2, n3 });
+            Assert.AreEqual(0, b.idx);
+            Assert.AreEqual(n1, b.nodes[0]);
+            Assert.AreEqual(n2, b.nodes[1]);
+            Assert.AreEqual(n3, b.nodes[2]);
+            Assert.IsTrue(b.Increment());
+            Assert.AreEqual(1, b.idx);
+            Assert.AreEqual(n1, b.nodes[0]);
+            Assert.AreEqual(new HuffmanBranch(n1, n2), b.nodes[1]);
+            Assert.AreEqual(n3, b.nodes[2]);
+            Assert.IsTrue(b.Increment());
+            Assert.AreEqual(2, b.idx);
+            Assert.AreEqual(n1, b.nodes[0]);
+            Assert.AreEqual(new HuffmanBranch(n1, n2), b.nodes[1]);
+            Assert.AreEqual(new HuffmanBranch(new HuffmanBranch(n1, n2), n3), b.nodes[2]);
+            Assert.IsFalse(b.Increment());
+            Assert.AreEqual(2, b.idx);
         }
+
+        /*
+        [TestMethod]
+        public void HuffmanTreeBuilder_Increment_Test2()
+        {
+            var n1 = new HuffmanLeaf(31, 2);
+            var n2 = new HuffmanLeaf(22, 2);
+            var n3 = new HuffmanLeaf(13, 2);
+            var b = new HuffmanTreeBuilder(new HuffmanNode[] { n1, n2, n3 });
+            Assert.AreEqual(0, b.idx);
+            Assert.AreEqual(n1, b.nodes[0]);
+            Assert.AreEqual(n2, b.nodes[1]);
+            Assert.AreEqual(n3, b.nodes[2]);
+            //Assert.IsTrue(b.Increment());
+            //Assert.AreEqual(1, b.idx);
+            //Assert.AreEqual(n1, b.nodes[0]);
+            //Assert.AreEqual(new HuffmanBranch(n1, n2), b.nodes[1]);
+            //Assert.AreEqual(n3, b.nodes[2]);
+            //Assert.IsTrue(b.Increment());
+            //Assert.AreEqual(2, b.idx);
+            //Assert.AreEqual(n1, b.nodes[0]);
+            //Assert.AreEqual(new HuffmanBranch(n1, n2), b.nodes[1]);
+            //Assert.AreEqual(new HuffmanBranch(new HuffmanBranch(n1, n2), n3), b.nodes[2]);
+            //Assert.IsFalse(b.Increment());
+            //Assert.AreEqual(2, b.idx);
+        }
+        */
     }
 }
